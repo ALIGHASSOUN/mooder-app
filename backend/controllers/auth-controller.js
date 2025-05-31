@@ -1,7 +1,8 @@
-import { User } from "../models/User.js";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import { User } from "../models/User.js";
+import { generateToken } from "../lib/utlis.js";
 import { redis } from "../lib/redis.js";
+import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
   try {
@@ -23,11 +24,21 @@ export const register = async (req, res) => {
 
     await newUser.save();
 
-    res.status(201).json({ message: "User created successfully" });
-  } catch (error) {
+    await generateToken(newUser._id, res);
+
+    res.status(201).json({
+      message: "User registered successfully",
+      user: {
+        id: newUser._id,
+        username: newUser.username,
+        role: newUser.role,
+        branchName: newUser.branchName || null,
+      },
+    });
+  } catch (err) {
     res
       .status(500)
-      .json({ message: "Registration failed", error: error.message });
+      .json({ message: "Registration failed", error: err.message });
   }
 };
 
@@ -39,22 +50,10 @@ export const login = async (req, res) => {
     if (!user) return res.status(404).json({ message: "User not found" });
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ message: "Invalid password" });
+    if (!isMatch)
+      return res.status(401).json({ message: "Invalid credentials" });
 
-    const token = jwt.sign(
-      { userId: user._id, role: user.role },
-      process.env.JWT_SECRET,
-      { expiresIn: "1d" }
-    );
-
-    await redis.set(user._id.toString(), token, "EX", 86400);
-
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 24 * 60 * 60 * 1000,
-    });
+    await generateToken(user._id, res);
 
     res.status(200).json({
       message: "Login successful",
@@ -65,7 +64,21 @@ export const login = async (req, res) => {
         branchName: user.branchName || null,
       },
     });
-  } catch (error) {
-    res.status(500).json({ message: "Login failed", error: error.message });
+  } catch (err) {
+    res.status(500).json({ message: "Login failed", error: err.message });
+  }
+};
+
+export const logout = async (req, res) => {
+  try {
+    const token = req.cookies.jwt;
+    if (!token) return res.status(400).json({ message: "No token provided" });
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    res.clearCookie("jwt");
+
+    res.status(200).json({ message: "Logout successful" });
+  } catch (err) {
+    res.status(500).json({ message: "Logout failed", error: err.message });
   }
 };
