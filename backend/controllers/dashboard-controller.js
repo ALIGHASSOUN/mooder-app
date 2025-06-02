@@ -1,7 +1,7 @@
 // backend/controllers/dashboard-controller.js
-import { Sale } from "../models/sale-model.js";
-import { Return } from "../models/return-model.js";
-import { Product } from "../models/product-model.js";
+import { Sale } from "../models/Sale.js";
+import { Return } from "../models/Return.js";
+import { Product } from "../models/Product.js";
 import { User } from "../models/User.js";
 import mongoose from "mongoose";
 

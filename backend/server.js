@@ -8,6 +8,7 @@ import productRoutes from "./routes/product-route.js";
 import salesRoutes from "./routes/sales-routes.js";
 import returnsRoutes from "./routes/returns-routes.js";
 import dashboardRoutes from "./routes/dashboard-routes.js";
+import stockRoutes from "./routes/stock-routes.js";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/sales", salesRoutes);
 app.use("/api/returns", returnsRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/stock", stockRoutes);
 
 app.listen(5000, () => {
   console.log("Server is runing on http://localhost:" + PORT);

@@ -1,5 +1,5 @@
-import { Return } from "../models/return-model.js";
-import { Product } from "../models/product-model.js";
+import { Return } from "../models/Return.js";
+import { Product } from "../models/Product.js";
 
 export const createReturn = async (req, res) => {
   try {
