@@ -1,0 +1,92 @@
+/* Container */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f5f6f8;
+  padding: 20px;
+}
+
+/* Form box */
+.login-form-box {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Form title */
+.form-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #111827;
+}
+
+/* Input group */
+.input-group {
+  position: relative;
+  margin-bottom: 1.2rem;
+  width: 100%;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 2.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #6b7280;
+}
+
+/* Toggle eye icon */
+.toggle-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #6b7280;
+}
+
+/* Submit button */
+.submit-btn {
+  width: 100%;
+  background-color: #4f46e5;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #4338ca;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-title {
+    font-size: 2rem;
+  }
+
+  .form-title {
+    font-size: 1.3rem;
+  }
+}
