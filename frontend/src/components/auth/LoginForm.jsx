@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { User, Lock, Eye, EyeOff } from "lucide-react";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -20,11 +20,10 @@ const LoginForm = () => {
         <h2 className="form-title">Login</h2>
 
         <div className="input-group">
-          <Mail className="icon" />
+          <User className="icon" />
           <input
-            type="email"
             name="email"
-            placeholder="Email"
+            placeholder="User name"
             required
             value={formData.email}
             onChange={handleChange}
