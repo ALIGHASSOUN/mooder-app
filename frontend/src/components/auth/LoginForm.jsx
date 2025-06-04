@@ -1,16 +1,33 @@
 import React, { useState } from "react";
 import { User, Lock, Eye, EyeOff } from "lucide-react";
+import axiosInstance from "../../lib/axios.js";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const LoginForm = () => {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({ username: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const togglePassword = () => setShowPassword(!showPassword);
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const res = await axiosInstance.post("/auth/login", formData);
+      navigate("/dashboard");
+      toast.success("تم تسجيل الدخول بنجاح!");
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message || "حدث خطأ أثناء تسجيل الدخول"
+      );
+
+      console.log(error);
+    }
+
     console.log(formData);
   };
 
@@ -22,10 +39,10 @@ const LoginForm = () => {
         <div className="input-group">
           <User className="icon" />
           <input
-            name="email"
+            name="username"
             placeholder="User name"
             required
-            value={formData.email}
+            value={formData.username}
             onChange={handleChange}
           />
         </div>
