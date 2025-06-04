@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["admin", "manager", "cashier"],
+      enum: ["admin", "branch", "cashier"],
       default: "cashier",
     },
     branchName: {

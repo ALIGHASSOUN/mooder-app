@@ -9,7 +9,7 @@ const RegisterForm = () => {
     username: "",
     password: "",
     confirmPassword: "",
-    role: "admin", // default role
+    role: "", // default role
     branchName: "",
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -17,8 +17,10 @@ const RegisterForm = () => {
 
   const togglePassword = () => setShowPassword(!showPassword);
 
-  const handleChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
