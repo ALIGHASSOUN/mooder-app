@@ -76,7 +76,7 @@ export const getDailyReport = async (req, res) => {
       }
     }
 
-    // استعلام المنتج والفرع لعرض الأسماء
+    // استعلام المنتج والفرع لعرض الأسماء//
     const final = await Promise.all(
       Object.values(report).map(async (entry) => {
         const product = await Product.findById(entry.product);
