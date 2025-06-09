@@ -9,7 +9,7 @@ const RegisterForm = () => {
     username: "",
     password: "",
     confirmPassword: "",
-    role: "", // default role
+    role: "admin",
     branchName: "",
   });
   const [showPassword, setShowPassword] = useState(false);
