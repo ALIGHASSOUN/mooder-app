@@ -33,6 +33,14 @@ const AdminReport = () => {
     <div className="report-container">
       <h2 className="report-title">التقرير اليومي للفروع</h2>
       <div className="table-wrapper">
+        <div style={{ marginBottom: "1rem" }}>
+          <button
+            onClick={exportToPDF(reportData)}
+            style={{ marginRight: "10px" }}
+          >
+            📄 تصدير إلى PDF
+          </button>
+        </div>
         <table className="report-table">
           <thead>
             <tr>
