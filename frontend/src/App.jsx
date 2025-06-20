@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Regster";
 import AdminDashboard from "./pages/AdminDashboard";
+import ProductsPage from "./pages/ProductsPage";
+import ProductForm from "./pages/ProductForm";
 import { Toaster } from "react-hot-toast";
 
 const App = () => {
@@ -11,6 +13,9 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/regster" element={<Register />} />
         <Route path="/admindashboard" element={<AdminDashboard />} />
+        <Route path="/admin/products" element={<ProductsPage />} />
+        <Route path="/admin/products/new" element={<ProductForm />} />
+        <Route path="/admin/products/edit/:id" element={<ProductForm />} />
       </Routes>
       <Toaster position="top-center" reverseOrder={false} />
     </Router>

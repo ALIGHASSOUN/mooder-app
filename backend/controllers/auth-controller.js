@@ -1,7 +1,6 @@
 import bcrypt from "bcryptjs";
 import { User } from "../models/User.js";
 import { generateToken } from "../lib/utlis.js";
-import { redis } from "../lib/redis.js";
 import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
