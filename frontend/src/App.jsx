@@ -4,6 +4,7 @@ import Register from "./pages/Regster";
 import AdminDashboard from "./pages/AdminDashboard";
 import ProductsPage from "./pages/ProductsPage";
 import ProductForm from "./pages/ProductForm";
+import StockPage from "./pages/StockPage";
 import { Toaster } from "react-hot-toast";
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/admin/products" element={<ProductsPage />} />
         <Route path="/admin/products/new" element={<ProductForm />} />
         <Route path="/admin/products/edit/:id" element={<ProductForm />} />
+        <Route path="/branch/stock" element={<StockPage />} />
       </Routes>
       <Toaster position="top-center" reverseOrder={false} />
     </Router>
