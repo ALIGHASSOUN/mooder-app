@@ -2,9 +2,11 @@ import { Sale } from "../models/Sale.js";
 import { Product } from "../models/Product.js";
 
 export const createSale = async (req, res) => {
+  console.log("dd");
   try {
     const { productId, quantitySold } = req.body;
     const branchId = req.user._id;
+    console.log(branchId);
 
     const product = await Product.findById(productId);
     if (!product) return res.status(404).json({ message: "Product not found" });
@@ -16,8 +18,8 @@ export const createSale = async (req, res) => {
     const totalPrice = quantitySold * product.price;
 
     const sale = new Sale({
-      product: productId,
-      branch: branchId,
+      productId: productId,
+      branchId: branchId,
       quantitySold,
       totalPrice,
     });
@@ -29,6 +31,7 @@ export const createSale = async (req, res) => {
 
     res.status(201).json({ message: "Sale recorded", sale });
   } catch (error) {
+    console.log(error);
     console.error("createSale error:", error.message);
     res
       .status(500)

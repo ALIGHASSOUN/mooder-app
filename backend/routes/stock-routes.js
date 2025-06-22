@@ -6,6 +6,7 @@ import {
   upsertStock,
   getBranchStock,
 } from "../controllers/stock-controller.js";
+import { authorizeRoles } from "../middleware/authorize-role.js";
 
 const router = express.Router();
 
